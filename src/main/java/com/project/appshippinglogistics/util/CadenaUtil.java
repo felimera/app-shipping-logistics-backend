@@ -1,0 +1,19 @@
+package com.project.appshippinglogistics.util;
+
+import com.project.appshippinglogistics.controller.dto.exception.KeyValueExceptionsMessage;
+import org.springframework.validation.BindingResult;
+
+import java.util.List;
+
+public class CadenaUtil {
+    private CadenaUtil() {
+        throw new IllegalStateException(CadenaUtil.class.toString());
+    }
+
+    public static List<KeyValueExceptionsMessage> formatMessage(BindingResult bindingResult) {
+        return bindingResult.getFieldErrors()
+                .stream()
+                .map(err -> KeyValueExceptionsMessage.builder().attributeName(err.getField()).attributeValue(err.getDefaultMessage()).build())
+                .toList();
+    }
+}
