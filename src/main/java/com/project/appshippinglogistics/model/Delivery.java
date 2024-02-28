@@ -24,6 +24,10 @@ public class Delivery {
     private String guideNumber;
     @Column(name = "ds_price")
     private Integer price;
+    @Column(name = "ds_amount")
+    private Integer amount;
+    @Column(name = "ds_discount")
+    private Double discount;
     @Column(name = "ds_deadline")
     private LocalDate deadline;
 

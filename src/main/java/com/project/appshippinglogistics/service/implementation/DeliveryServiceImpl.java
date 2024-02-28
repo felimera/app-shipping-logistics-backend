@@ -61,7 +61,19 @@ public class DeliveryServiceImpl implements DeliveryService {
         if (Objects.nonNull(dto.getIdShip()))
             shipRepository.findById(dto.getIdShip()).ifPresent(delivery::setShip);
 
+        if (delivery.getAmount() > 10) {
+            Double discount = getShippingDiscount(delivery.getPrice(), (Objects.nonNull(dto.getIdStore()) && Objects.nonNull(dto.getIdVehicle())));
+            delivery.setDiscount(discount);
+        }
+
         return deliveryRepository.save(delivery);
     }
 
+    private Double getShippingDiscount(Integer price, boolean value) {
+        if (value) {
+            return price * 0.05;
+        } else {
+            return price * 0.03;
+        }
+    }
 }

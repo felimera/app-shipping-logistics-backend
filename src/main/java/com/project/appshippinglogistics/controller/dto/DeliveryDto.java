@@ -11,6 +11,8 @@ public class DeliveryDto {
     private Integer id;
     private String guideNumber;
     private Integer price;
+    private Integer amount;
+    private Double discount;
     private LocalDate deadline;
 
     private Integer idCustomer;
