@@ -1,6 +1,6 @@
 package com.project.appshippinglogistics.service.implementation;
 
-import com.project.appshippinglogistics.controller.dto.SignUpDto;
+import com.project.appshippinglogistics.controller.dto.auth.SignUpDto;
 import com.project.appshippinglogistics.exception.BusinessException;
 import com.project.appshippinglogistics.mapper.CustomerMapper;
 import com.project.appshippinglogistics.mapper.UserMapper;

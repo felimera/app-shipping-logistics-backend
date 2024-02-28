@@ -1,6 +1,6 @@
 package com.project.appshippinglogistics.mapper;
 
-import com.project.appshippinglogistics.controller.dto.SignUpDto;
+import com.project.appshippinglogistics.controller.dto.auth.SignUpDto;
 import com.project.appshippinglogistics.controller.dto.UserDto;
 import com.project.appshippinglogistics.model.User;
 import org.mapstruct.InheritInverseConfiguration;

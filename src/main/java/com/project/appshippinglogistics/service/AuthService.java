@@ -1,6 +1,6 @@
 package com.project.appshippinglogistics.service;
 
-import com.project.appshippinglogistics.controller.dto.SignUpDto;
+import com.project.appshippinglogistics.controller.dto.auth.SignUpDto;
 import org.springframework.stereotype.Service;
 
 @Service
