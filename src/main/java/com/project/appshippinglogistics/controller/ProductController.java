@@ -45,6 +45,6 @@ public class ProductController {
         if (bindingResult.hasErrors())
             throw new ResponseMessageException("401-01", "Error creating product.", CadenaUtil.formatMessage(bindingResult), HttpStatus.BAD_REQUEST);
         Product product = ProductMapper.INSTANCE.toEntity(productDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ProductMapper.INSTANCE.toDto(productService.save(product)));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ProductMapper.INSTANCE.toDto(productService.save(product, productDto.getIdProductType())));
     }
 }

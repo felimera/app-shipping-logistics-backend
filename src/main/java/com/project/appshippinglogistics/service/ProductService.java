@@ -10,5 +10,5 @@ public interface ProductService {
 
     Product getById(Integer id);
 
-    Product save(Product product);
+    Product save(Product product,Integer idProductType);
 }

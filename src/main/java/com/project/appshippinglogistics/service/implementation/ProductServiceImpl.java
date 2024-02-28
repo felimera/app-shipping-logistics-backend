@@ -2,8 +2,10 @@ package com.project.appshippinglogistics.service.implementation;
 
 import com.project.appshippinglogistics.exception.BusinessException;
 import com.project.appshippinglogistics.model.Product;
+import com.project.appshippinglogistics.model.ProductType;
 import com.project.appshippinglogistics.repository.ProductRepository;
 import com.project.appshippinglogistics.service.ProductService;
+import com.project.appshippinglogistics.service.ProductTypeService;
 import com.project.appshippinglogistics.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,11 +17,15 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
+    private ProductTypeService productTypeService;
+
+    public ProductServiceImpl(ProductRepository productRepository, ProductTypeService productTypeService) {
+        this.productRepository = productRepository;
+        this.productTypeService = productTypeService;
+    }
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+
 
     @Override
     public List<Product> getAll() {
@@ -32,7 +38,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product save(Product product) {
+    public Product save(Product product, Integer idProductType) {
+        ProductType productType =productTypeService.getById(idProductType);
+        product.setProductType(productType);
         return productRepository.save(product);
     }
 }
