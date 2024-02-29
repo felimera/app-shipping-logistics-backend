@@ -35,4 +35,9 @@ public class StoreServiceImpl implements StoreService {
     public Store save(Store store) {
         return storeRepository.save(store);
     }
+
+    @Override
+    public List<Store> getStoreQuery(String query) {
+        return storeRepository.getStoreList(query);
+    }
 }

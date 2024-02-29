@@ -39,6 +39,12 @@ public class StoreController {
         return ResponseEntity.ok(StoreMapper.INSTANCE.toDto(storeService.getById(id)));
     }
 
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<StoreDto>> getStoreQuery(@RequestParam(name = "value") String value) {
+        List<Store> storeList = storeService.getStoreQuery(value);
+        return ResponseEntity.ok(storeList.stream().map(StoreMapper.INSTANCE::toDto).toList());
+    }
+
     @PostMapping
     public ResponseEntity<Object> saveStore(@Valid @RequestBody StoreDto storeDto, BindingResult bindingResult) {
         log.info("Creating Store: {}", storeDto);
