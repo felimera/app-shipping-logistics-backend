@@ -10,4 +10,6 @@ public interface StoreService {
     Store getById(Integer id);
 
     Store save(Store store);
+
+    List<Store> getStoreQuery(String query);
 }
