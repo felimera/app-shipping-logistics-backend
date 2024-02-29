@@ -19,6 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(path = "/api/ship")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ShipController {
 
     private ShipService shipService;
