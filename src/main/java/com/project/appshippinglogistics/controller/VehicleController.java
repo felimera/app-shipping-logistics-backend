@@ -40,6 +40,12 @@ public class VehicleController {
         return ResponseEntity.ok(VehicleMapper.INSTANCE.toDto(vehicleService.getById(id)));
     }
 
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<VehicleDto>> getStoreQuery(@RequestParam(name = "value") String value) {
+        List<Vehicle> vehicleList = vehicleService.getStoreQuery(value);
+        return ResponseEntity.ok(vehicleList.stream().map(VehicleMapper.INSTANCE::toDto).toList());
+    }
+
     @PostMapping
     public ResponseEntity<Object> saveVehicle(@Valid @RequestBody VehicleDto vehicleDto, BindingResult bindingResult) {
         log.info("Creating Vehicle: {}", vehicleDto);
