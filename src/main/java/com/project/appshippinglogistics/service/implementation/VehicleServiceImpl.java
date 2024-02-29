@@ -35,4 +35,9 @@ public class VehicleServiceImpl implements VehicleService {
     public Vehicle save(Vehicle vehicle) {
         return vehicleRepository.save(vehicle);
     }
+
+    @Override
+    public List<Vehicle> getStoreQuery(String value) {
+        return vehicleRepository.getVehicleList(value);
+    }
 }
