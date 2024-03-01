@@ -34,4 +34,9 @@ public class PortServiceImpl implements PortService {
     public Port save(Port port) {
         return portRepository.save(port);
     }
+
+    @Override
+    public List<Port> getPortQuery(String value) {
+        return portRepository.getPortList(value);
+    }
 }
