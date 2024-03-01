@@ -35,4 +35,9 @@ public class ShipServiceImpl implements ShipService {
     public Ship save(Ship ship) {
         return shipRepository.save(ship);
     }
+
+    @Override
+    public List<Ship> getStoreQuery(String value) {
+        return shipRepository.getShipList(value);
+    }
 }

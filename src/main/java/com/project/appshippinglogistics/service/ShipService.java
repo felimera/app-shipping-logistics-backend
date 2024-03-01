@@ -10,4 +10,6 @@ public interface ShipService {
     Ship getById(Integer id);
 
     Ship save(Ship ship);
+
+    List<Ship> getStoreQuery(String value);
 }

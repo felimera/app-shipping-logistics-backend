@@ -40,6 +40,12 @@ public class ShipController {
         return ResponseEntity.ok(ShipMapper.INSTANCE.toDto(shipService.getById(id)));
     }
 
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<ShipDto>> getStoreQuery(@RequestParam(name = "value") String value) {
+        List<Ship> shipList = shipService.getStoreQuery(value);
+        return ResponseEntity.ok(shipList.stream().map(ShipMapper.INSTANCE::toDto).toList());
+    }
+
     @PostMapping
     public ResponseEntity<Object> saveShip(@Valid @RequestBody ShipDto shipDto, BindingResult bindingResult) {
         log.info("Creating Ship: {}", shipDto);
