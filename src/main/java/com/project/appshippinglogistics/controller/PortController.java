@@ -40,6 +40,12 @@ public class PortController {
         return ResponseEntity.ok(PortMapper.INSTANCE.toDto(portService.getById(id)));
     }
 
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<PortDto>> getPortQuery(@RequestParam(name = "value") String value) {
+        List<Port> portList = portService.getPortQuery(value);
+        return ResponseEntity.ok(portList.stream().map(PortMapper.INSTANCE::toDto).toList());
+    }
+
     @PostMapping
     public ResponseEntity<Object> savePort(@Valid @RequestBody PortDto portDto, BindingResult bindingResult) {
         log.info("Creating Port: {}", portDto);
