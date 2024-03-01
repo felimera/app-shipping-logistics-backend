@@ -40,6 +40,12 @@ public class ProductController {
         return ResponseEntity.ok(ProductMapper.INSTANCE.toDto(productService.getById(id)));
     }
 
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<ProductDto>> getProductQuery(@RequestParam(name = "value") String value) {
+        List<Product> productList = productService.getProductQuery(value);
+        return ResponseEntity.ok(productList.stream().map(ProductMapper.INSTANCE::toDto).toList());
+    }
+
     @PostMapping
     public ResponseEntity<Object> saveProduct(@Valid @RequestBody ProductDto productDto, BindingResult bindingResult) {
         log.info("Creating Product : {}", productDto);

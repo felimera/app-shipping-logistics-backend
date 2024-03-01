@@ -43,4 +43,9 @@ public class ProductServiceImpl implements ProductService {
         product.setProductType(productType);
         return productRepository.save(product);
     }
+
+    @Override
+    public List<Product> getProductQuery(String value) {
+        return productRepository.getProductList(value);
+    }
 }
