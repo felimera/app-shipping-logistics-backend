@@ -19,6 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(path = "/api/port")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PortController {
 
     private PortService portService;
@@ -37,6 +38,12 @@ public class PortController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<PortDto> getById(@PathVariable(name = "id") Integer id) {
         return ResponseEntity.ok(PortMapper.INSTANCE.toDto(portService.getById(id)));
+    }
+
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<PortDto>> getPortQuery(@RequestParam(name = "value") String value) {
+        List<Port> portList = portService.getPortQuery(value);
+        return ResponseEntity.ok(portList.stream().map(PortMapper.INSTANCE::toDto).toList());
     }
 
     @PostMapping

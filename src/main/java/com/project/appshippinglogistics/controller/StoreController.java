@@ -19,6 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(path = "/api/store")
+@CrossOrigin(origins = "http://localhost:4200")
 public class StoreController {
 
     private StoreService storeService;
@@ -37,6 +38,12 @@ public class StoreController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<StoreDto> getById(@PathVariable(name = "id") Integer id) {
         return ResponseEntity.ok(StoreMapper.INSTANCE.toDto(storeService.getById(id)));
+    }
+
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<StoreDto>> getStoreQuery(@RequestParam(name = "value") String value) {
+        List<Store> storeList = storeService.getStoreQuery(value);
+        return ResponseEntity.ok(storeList.stream().map(StoreMapper.INSTANCE::toDto).toList());
     }
 
     @PostMapping

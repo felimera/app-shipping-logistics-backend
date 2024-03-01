@@ -19,6 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(path = "/api/vehicle")
+@CrossOrigin(origins = "http://localhost:4200")
 public class VehicleController {
 
     private VehicleService vehicleService;
@@ -37,6 +38,12 @@ public class VehicleController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<VehicleDto> getById(@PathVariable(name = "id") Integer id) {
         return ResponseEntity.ok(VehicleMapper.INSTANCE.toDto(vehicleService.getById(id)));
+    }
+
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<VehicleDto>> getStoreQuery(@RequestParam(name = "value") String value) {
+        List<Vehicle> vehicleList = vehicleService.getStoreQuery(value);
+        return ResponseEntity.ok(vehicleList.stream().map(VehicleMapper.INSTANCE::toDto).toList());
     }
 
     @PostMapping

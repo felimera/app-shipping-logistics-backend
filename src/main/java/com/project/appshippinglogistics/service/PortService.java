@@ -10,4 +10,6 @@ public interface PortService {
     Port getById(Integer id);
 
     Port save(Port port);
+
+    List<Port> getPortQuery(String value);
 }

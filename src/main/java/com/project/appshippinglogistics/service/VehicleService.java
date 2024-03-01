@@ -10,4 +10,6 @@ public interface VehicleService {
     Vehicle getById(Integer id);
 
     Vehicle save(Vehicle vehicle);
+
+    List<Vehicle> getStoreQuery(String value);
 }
