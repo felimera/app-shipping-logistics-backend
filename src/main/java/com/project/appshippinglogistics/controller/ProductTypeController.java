@@ -6,10 +6,7 @@ import com.project.appshippinglogistics.model.ProductType;
 import com.project.appshippinglogistics.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,12 @@ public class ProductTypeController {
     @GetMapping
     public ResponseEntity<List<ProductTypeDto>> getAll() {
         List<ProductType> productTypeList = productTypeService.getAll();
+        return ResponseEntity.ok(productTypeList.stream().map(ProductTypeMapper.INSTANCE::toDto).toList());
+    }
+
+    @GetMapping(path = "/query")
+    public ResponseEntity<List<ProductTypeDto>> getProductTypeQuery(@RequestParam(name = "value") String value) {
+        List<ProductType> productTypeList = productTypeService.getProductTypeQuery(value);
         return ResponseEntity.ok(productTypeList.stream().map(ProductTypeMapper.INSTANCE::toDto).toList());
     }
 }
