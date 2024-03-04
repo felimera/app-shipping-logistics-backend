@@ -29,4 +29,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     public ProductType getById(Integer idProductType) {
         return productTypeRepository.findById(idProductType).orElseThrow(() -> new BusinessException("401", HttpStatus.NOT_FOUND, Constants.MESSAGE_NOT_FOUND));
     }
+
+    @Override
+    public List<ProductType> getProductTypeQuery(String value) {
+        return productTypeRepository.getProductTypeList(value);
+    }
 }
