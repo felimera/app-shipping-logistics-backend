@@ -38,11 +38,11 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository 
             predicates.add(cb.like(nameExpression, nameValue));
         }
 
-        if (Objects.nonNull(seeker.getPrice())) {
+        if (Objects.nonNull(seeker.getPrice()) && seeker.getPrice() > 0) {
             predicates.add(cb.equal(productRoot.get(Product_.PRICE), seeker.getPrice()));
         }
 
-        if (Objects.nonNull(seeker.getStartAmount()) && Objects.nonNull(seeker.getFinalAmount())) {
+        if ((Objects.nonNull(seeker.getStartAmount()) && seeker.getStartAmount() > 0) && (Objects.nonNull(seeker.getFinalAmount()) && seeker.getFinalAmount() > 0)) {
             predicates.add(cb.between(productRoot.get(Product_.AMOUNT), seeker.getStartAmount(), seeker.getFinalAmount()));
         }
 
@@ -50,7 +50,7 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository 
             predicates.add(cb.between(productRoot.get(Product_.REGISTRATION_DATE), seeker.getStartDate(), seeker.getFinalDate()));
         }
 
-        if (Objects.nonNull(seeker.getIdProductType()))
+        if (Objects.nonNull(seeker.getIdProductType()) && seeker.getIdProductType() > 0)
             predicates.add(cb.equal(productTypeProductJoin.get(ProductType_.ID), seeker.getIdProductType()));
 
         if (!predicates.isEmpty()) {
