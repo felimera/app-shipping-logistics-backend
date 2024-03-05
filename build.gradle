@@ -37,8 +37,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
-    // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-jpamodelgen
-    compileOnly group: 'org.hibernate.orm', name: 'hibernate-jpamodelgen', version: '6.3.0.CR1'
+    annotationProcessor("org.hibernate.orm:hibernate-jpamodelgen:6.3.1.Final")
 }
 
 tasks.named('test') {
