@@ -48,4 +48,11 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer getById(Integer id) {
         return customerRepository.findById(id).orElseThrow(() -> new BusinessException("201", HttpStatus.NOT_FOUND, Constants.MESSAGE_USER_NOT_FOUND));
     }
+
+    @Override
+    public Customer getCustomerByEmail(String email) {
+        return customerRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new BusinessException("201", HttpStatus.NOT_FOUND, Constants.MESSAGE_USER_NOT_FOUND));
+    }
 }

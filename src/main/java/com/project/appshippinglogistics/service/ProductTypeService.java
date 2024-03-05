@@ -8,4 +8,6 @@ public interface ProductTypeService {
     List<ProductType> getAll();
 
     ProductType getById(Integer idProductType);
+
+    List<ProductType> getProductTypeQuery(String value);
 }

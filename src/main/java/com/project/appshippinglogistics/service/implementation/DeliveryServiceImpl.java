@@ -1,6 +1,7 @@
 package com.project.appshippinglogistics.service.implementation;
 
 import com.project.appshippinglogistics.controller.dto.DeliveryDto;
+import com.project.appshippinglogistics.controller.dto.search.DeliverySeek;
 import com.project.appshippinglogistics.exception.BusinessException;
 import com.project.appshippinglogistics.model.Delivery;
 import com.project.appshippinglogistics.repository.*;
@@ -67,6 +68,26 @@ public class DeliveryServiceImpl implements DeliveryService {
         }
 
         return deliveryRepository.save(delivery);
+    }
+
+    @Override
+    public List<Integer> getAllPrice() {
+        return deliveryRepository.getPriceAll();
+    }
+
+    @Override
+    public List<Integer> getAllAmount() {
+        return deliveryRepository.getAmountAll();
+    }
+
+    @Override
+    public List<Integer> getAllDiscount() {
+        return deliveryRepository.getDiscountAll();
+    }
+
+    @Override
+    public List<Delivery> getDeliveryForMultiParameter(DeliverySeek seek) {
+        return deliveryRepository.getDeliveryForMultiParameter(seek);
     }
 
     private Double getShippingDiscount(Integer price, boolean value) {

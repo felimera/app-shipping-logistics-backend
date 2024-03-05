@@ -12,4 +12,6 @@ public interface CustomerService {
     Customer getById(Integer id);
 
     Customer postCustomer(Customer customer, Integer idUser);
+
+    Customer getCustomerByEmail(String email);
 }
